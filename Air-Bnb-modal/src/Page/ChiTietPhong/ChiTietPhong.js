@@ -14,6 +14,9 @@ import { Button, Modal } from 'antd';
 import { addDays } from 'date-fns';
 import "./chiTietPhong.css";
 import DanhGiaPhong from './DanhGiaPhong';
+import { store } from '../..';
+import { set_spinner_end, set_spinner_start } from '../../redux/Actions/spinnerActions';
+import httpServ from '../../serviceWorker/http.service';
 
 
 
@@ -145,13 +148,15 @@ export default function ChiTietPhong() {
   }
 
   useEffect(() => {
-    axios({
-      url: DOMAIN + `/api/rooms/${id}`,
-      method: "GET",
-      headers: {
-        tokenByClass: TOKEN_CYBERSOFT,
-      },
-    })
+    // axios({
+    //   url: DOMAIN + `/api/rooms/${id}`,
+    //   method: "GET",
+    //   headers: {
+    //     tokenByClass: TOKEN_CYBERSOFT,
+    //   },
+    // })
+    httpServ
+    .layThongTinPhong(id)
       .then((res) => {
         console.log("res", res);
         setDataRomLo(res.data.locationId);
@@ -485,11 +490,6 @@ export default function ChiTietPhong() {
                         <button className="focus:outline-none w-full rounded-xl transform active:scale-90" style={{ background: " linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%)" }}>
                           <p className="text-white font-bold text-xl mt-3">Check availability</p>
                         </button>
-                      </div>
-                      <div>
-                        <p>
-                          Vinh
-                        </p>
                       </div>
                     </div>
                   </div>

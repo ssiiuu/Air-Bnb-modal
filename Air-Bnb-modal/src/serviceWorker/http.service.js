@@ -18,6 +18,21 @@ class HttpRequestService {
 
     return AxiosServ.getMethod(url);
   }
+  layThongTinPhong = (id) => {
+    const url=`/api/rooms/${id}`;
+
+    return AxiosServ.getMethod(url);
+  }
+  layDanhGiaPhong=(id)=>{
+    const url=`/api/reviews/byRoom?roomId=${id}`;
+
+    return AxiosServ.getMethod(url);
+  }
+  layVeDaDangKi=(id)=>{
+    const url=`/api/tickets/by-user?userId=${id}`;
+
+    return AxiosServ.getMethod(url);
+  }
   dangNhap=(data)=>{
     const url="/api/auth/login";
 

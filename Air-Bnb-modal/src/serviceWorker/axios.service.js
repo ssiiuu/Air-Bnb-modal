@@ -1,5 +1,7 @@
 import Axios from "axios";
+import { store } from "..";
 import { DOMAIN, TOKEN_CYBERSOFT } from "../configUrl/configURL";
+import { set_spinner_end, set_spinner_start } from "../redux/Actions/spinnerActions";
 // import { store } from "../index";
 
 //import { set_spinner_end, set_spinner_start } from "../redux/action/spinnerAction";
@@ -70,12 +72,12 @@ class AxiosService {
 
   handleFlow(method, loading = true) {
 
-   // store.dispatch(set_spinner_start());
+    store.dispatch(set_spinner_start());
 
     return new Promise((resolve, reject) => {
       method
         .then((res) => {
-        //  store.dispatch(set_spinner_end());
+          store.dispatch(set_spinner_end());
           resolve({
             data: res.data,
             status: res.status,
@@ -83,7 +85,7 @@ class AxiosService {
           });
         })
         .catch((err) => {
-        //  store.dispatch(set_spinner_end());
+          store.dispatch(set_spinner_end());
           this.handleError(err);
           reject({
             err: err,

@@ -1,15 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import "./MyPofolio.css"
+import axios from "axios";
+import { DOMAIN, TOKEN_CYBERSOFT } from '../../../../configUrl/configURL';
+import { Upload, Button } from "antd";
 
 export default function MyPofolio() {
   let userInfor = useSelector((state) => state.userReducer.userInfor);
+  const [antPics, setAntPics] = useState([]);
+  const handleAnt = e => {
+    console.log(e.file.originFileObj);
+    setAntPics(e.file.originFileObj);
+  };
+  // useEffect(() => {
+  //   axios({
+  //     url: DOMAIN + `/api/users/upload-avatar`,
+  //     method: "POST",
+  //     headers: {
+  //       tokenByClass: TOKEN_CYBERSOFT,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log("resAvatar", res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   console.log("userInfor", { userInfor });
   return (
     <div className="flex justify-center flex-col mx-2">
       <div className="text-center relative py-5">
         <img src={userInfor.avatar} className="object-cover w-20 h-20 rounded-full mx-auto" />
-        <p className="cursor-pointer underline font-semibold mt-2">Update photo</p>
+        <div>
+        <Upload onChange={handleAnt}>
+        <input type="file" accept="image/x-png, image/gif, image/jpeg" style={{display: 'none'}} />
+          <p className="cursor-pointer underline font-semibold mt-2">Update photo</p>
+          </Upload>
+          </div>
       </div>
       <div>
         <div className="border-b mb-4">

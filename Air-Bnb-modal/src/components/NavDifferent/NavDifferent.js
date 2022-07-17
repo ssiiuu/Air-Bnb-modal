@@ -12,7 +12,7 @@ export default function NavDifferent() {
     }
 
     return (
-          <header className="sticky w-full top-0 left-0 right-0 bg-white transition duration-500 z-50 grid grid-cols-2 shadow-md p-5 md:px-10">
+          <header className="sticky w-full top-0 left-0 right-0 bg-white transition duration-500 z-40 grid grid-cols-2 shadow-md p-5 md:px-10">
                 {/* left */}
                 <div className='relative flex items-center w-32 cursor-pointer my-auto'>
                 <button className="outline-none border-none" onClick={handleClickTrangChu}>

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { DOMAIN, TOKEN_CYBERSOFT } from '../../configUrl/configURL';
 import CommentDetail from './CommentDetail';
 import { Button, Modal } from 'antd';
+import httpServ from '../../serviceWorker/http.service';
 
 export default function DanhGiaPhong() {
 
@@ -26,13 +27,8 @@ export default function DanhGiaPhong() {
     let { id } = useParams();
 
     useEffect(() => {
-        axios({
-          url: DOMAIN + `/api/reviews/byRoom?roomId=${id}`,
-          method: "GET",
-          headers: {
-            tokenByClass: TOKEN_CYBERSOFT,
-          },
-        })
+        httpServ
+        .layDanhGiaPhong(id)
           .then((res) => {
             console.log("res", res);
             setDataComment(res.data);

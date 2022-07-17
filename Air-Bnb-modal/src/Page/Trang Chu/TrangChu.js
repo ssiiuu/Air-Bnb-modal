@@ -17,7 +17,6 @@ export default function TrangChu() {
   }, []);
   return (
     <div className="bg-gray-50">
-      <NavHeader />
       <Banner />
       <div className="max-w-7xl md:mx-auto px-8 sm:px-16 bg-white m-7 md:m-10 rounded-md shadow-md">
       <ListRoom />
