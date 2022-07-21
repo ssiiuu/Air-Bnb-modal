@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 
 const { Meta } = Card;
 export default function ItemRoom({ data }) {
-  console.log("phong",data._id);
+  // console.log("phong",data._id);
   return (
     <div className="w-1/3 p-3 hover:shadow-xl">
-     <NavLink
+      <NavLink
         to={`/detail/${data._id}`}
         className="block w-full shadow cursor-pointer"
       >

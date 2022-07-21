@@ -1,7 +1,10 @@
 import Axios from "axios";
 import { store } from "..";
 import { DOMAIN, TOKEN_CYBERSOFT } from "../configUrl/configURL";
-import { set_spinner_end, set_spinner_start } from "../redux/Actions/spinnerActions";
+import {
+  set_spinner_end,
+  set_spinner_start,
+} from "../redux/Actions/spinnerActions";
 // import { store } from "../index";
 
 //import { set_spinner_end, set_spinner_start } from "../redux/action/spinnerAction";
@@ -27,7 +30,9 @@ class AxiosService {
     this.axiosConfig = {
       headers: {
         tokenByClass: TOKEN_CYBERSOFT,
-        token:localStorageServ.userInfor.get()?.token,
+        token: localStorageServ.userInfor.get()?.token,
+        // token: localStorageServ.token.get(),
+        // Authorization: "bearer " + localStorageServ.tokenAdmin.get(),
       },
     };
   };
@@ -71,7 +76,6 @@ class AxiosService {
   }
 
   handleFlow(method, loading = true) {
-
     store.dispatch(set_spinner_start());
 
     return new Promise((resolve, reject) => {
