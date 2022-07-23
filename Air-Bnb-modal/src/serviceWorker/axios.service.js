@@ -30,8 +30,7 @@ class AxiosService {
     this.axiosConfig = {
       headers: {
         tokenByClass: TOKEN_CYBERSOFT,
-        token: localStorageServ.userInfor.get()?.token,
-        // token: localStorageServ.token.get(),
+        token: localStorageServ.token.get(),
         // Authorization: "bearer " + localStorageServ.tokenAdmin.get(),
       },
     };

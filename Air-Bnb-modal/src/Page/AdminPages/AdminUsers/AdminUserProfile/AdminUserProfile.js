@@ -5,9 +5,9 @@ import moment from "moment";
 export default function AdminUserProfile() {
   const [showMore, setShowMore] = useState(false);
 
-  const { userInforDetails } = useSelector((state) => state.userReducer);
-  const { userInforDetailsTickets } = useSelector((state) => state.userReducer);
-  console.log("userInforDetailsTickets", userInforDetailsTickets);
+  const { userInforDetails, userInforDetailsTickets } = useSelector(
+    (state) => state.userReducer
+  );
 
   const handleShowMore = () => {
     setShowMore(!showMore);
@@ -115,13 +115,17 @@ export default function AdminUserProfile() {
 
       <div className="flex justify-center mt-5">
         {userInforDetailsTickets.length != 0 ? (
-          <button
-            className="p-2 rounded font-semibold bg-white hover:text-white hover:bg-red-500"
-            style={{ border: "2px #ff385c solid", color: "#ff385c" }}
-            onClick={handleShowMore}
-          >
-            {showMore ? "Ẩn bớt" : "Xem thêm"}
-          </button>
+          userInforDetailsTickets.length >= 2 ? (
+            <button
+              className="p-2 rounded font-semibold bg-white hover:text-white hover:bg-red-500"
+              style={{ border: "2px #ff385c solid", color: "#ff385c" }}
+              onClick={handleShowMore}
+            >
+              {showMore ? "Ẩn bớt" : "Xem thêm"}
+            </button>
+          ) : (
+            <></>
+          )
         ) : (
           <p>Lịch sử đặt vé còn trống!</p>
         )}

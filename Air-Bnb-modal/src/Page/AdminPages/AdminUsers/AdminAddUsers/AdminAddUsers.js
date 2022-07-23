@@ -34,7 +34,6 @@ export default function AdminAddUsers() {
       type: "ADMIN",
     },
     onSubmit: (values) => {
-      console.log("valuesSubmit", values);
       dispatch(addUserAdminAction(values));
     },
     validationSchema: Yup.object({

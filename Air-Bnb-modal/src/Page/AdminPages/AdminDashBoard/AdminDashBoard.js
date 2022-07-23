@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   TeamOutlined,
   HomeOutlined,
@@ -7,8 +7,30 @@ import {
   TagOutlined,
 } from "@ant-design/icons";
 import "./AdminDashBoard.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserListAction } from "../../../redux/Actions/userAction";
+import { getLocationListAction } from "../../../redux/Actions/locationAction";
+import { getValueateListByRoomAction } from "../../../redux/Actions/valueateAction";
+import { getTicketListAction } from "../../../redux/Actions/ticketAction";
+import { getRoomAction } from "../../../redux/Actions/userActions";
 
 export default function AdminDashBoard() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserListAction());
+    dispatch(getRoomAction());
+    dispatch(getLocationListAction());
+    dispatch(getValueateListByRoomAction());
+    dispatch(getTicketListAction());
+  }, []);
+
+  const { userList } = useSelector((state) => state.userReducer);
+  const { dsRoom } = useSelector((state) => state.roomReducer);
+  const { locationList } = useSelector((state) => state.locationReducer);
+  const { valueateList } = useSelector((state) => state.valueateReducer);
+  const { ticketList } = useSelector((state) => state.ticketReducer);
+
   return (
     <section className="py-8" style={{ backgroundColor: "#f0f2f5" }}>
       <div className="px-8">
@@ -31,7 +53,7 @@ export default function AdminDashBoard() {
                   className="text-xl font-bold"
                   style={{ lineHeight: "1.75rem" }}
                 >
-                  887
+                  {userList.length}
                 </span>
               </div>
               <div>
@@ -67,7 +89,7 @@ export default function AdminDashBoard() {
                   className="text-xl font-bold"
                   style={{ lineHeight: "1.75rem" }}
                 >
-                  435
+                  {dsRoom.length}
                 </span>
               </div>
               <div>
@@ -103,7 +125,7 @@ export default function AdminDashBoard() {
                   className="text-xl font-bold"
                   style={{ lineHeight: "1.75rem" }}
                 >
-                  24
+                  {locationList.length}
                 </span>
               </div>
               <div>
@@ -139,7 +161,7 @@ export default function AdminDashBoard() {
                   className="text-xl font-bold"
                   style={{ lineHeight: "1.75rem" }}
                 >
-                  131
+                  {valueateList.length}
                 </span>
               </div>
               <div>
@@ -175,7 +197,7 @@ export default function AdminDashBoard() {
                   className="text-xl font-bold"
                   style={{ lineHeight: "1.75rem" }}
                 >
-                  1,376
+                  {ticketList.length}
                 </span>
               </div>
               <div>

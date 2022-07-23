@@ -34,7 +34,6 @@ export default function AdminEditUser() {
       gender: userInforDetails.gender,
       password: userInforDetails.password,
       birthday: userInforDetails.birthday,
-      avatar: {},
       type: "ADMIN",
     },
     onSubmit: (values) => {
@@ -134,7 +133,6 @@ export default function AdminEditUser() {
             placeholder="Select your gender"
             name="gender"
             onChange={(value) => {
-              console.log("e", value);
               formik.setFieldValue("gender", value);
             }}
             value={formik.values.gender}

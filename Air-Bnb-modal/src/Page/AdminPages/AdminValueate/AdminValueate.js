@@ -4,35 +4,25 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Column from "antd/lib/table/Column";
-import { useHistory, useParams } from "react-router-dom";
-import {
-  deleteRoomAction,
-  getRoomDetailAction,
-  getRoomListAction,
-  updateImgRoomAction,
-} from "../../../redux/Actions/roomAction";
+import { useParams } from "react-router-dom";
 import {
   addValueateAction,
   deleteValueateAction,
   getValueateDetail,
+  getValueateDetailAction,
   getValueateListByRoomAction,
   updateValueateAction,
 } from "../../../redux/Actions/valueateAction";
 import moment from "moment";
 import { ModalAddValueateByRoom } from "./ModalAddValueateByRoom/ModalAddValueateByRoom";
 import { ModalEditValueateByRoom } from "./ModalEditValueateByRoom/ModalEditValueateByRoom";
-import localStorageServ from "../../../serviceWorker/locaStorage.service";
 
 const { Search } = Input;
 
-export default function AdminRooms() {
-  const history = useHistory();
-
+export default function AdminValueate() {
   const dispatch = useDispatch();
 
   const { roomId } = useParams();
-
-  const userId = localStorageServ.userLogin.get();
 
   const [page, setPage] = useState(1);
 
@@ -95,7 +85,7 @@ export default function AdminRooms() {
         />
         <ModalEditValueateByRoom
           visible={visibleEdit}
-          onCreate={onUpdate}
+          onUpdate={onUpdate}
           onCancel={() => {
             setVisibleEdit(false);
           }}
@@ -161,7 +151,7 @@ export default function AdminRooms() {
                 <Tooltip title="Sửa thông tin đánh giá">
                   <button
                     onClick={() => {
-                      dispatch(getValueateDetail(id));
+                      dispatch(getValueateDetailAction(id));
                       setVisibleEdit(true);
                     }}
                     className="text-blue-600 text-2xl mr-4 cursor-pointer"

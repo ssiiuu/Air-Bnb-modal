@@ -28,7 +28,6 @@ export default function AdminAddLocation() {
       valueate: "",
     },
     onSubmit: (values) => {
-      console.log("valuesSubmit", values);
       dispatch(addLocationAction(values));
     },
     validationSchema: Yup.object({

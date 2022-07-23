@@ -36,6 +36,7 @@ export default function AdminRooms() {
 
   let { roomList } = useSelector((state) => state.roomReducer);
   console.log("roomList", roomList);
+
   let roomListData = roomList.filter((room) => {
     return room.locationId;
   });

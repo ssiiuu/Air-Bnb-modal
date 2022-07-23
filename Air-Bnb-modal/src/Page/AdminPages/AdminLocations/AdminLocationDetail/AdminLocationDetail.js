@@ -12,7 +12,6 @@ import { history } from "../../../../App";
 
 export default function AdminLocationDetail() {
   const { locationDetail } = useSelector((state) => state.locationReducer);
-  console.log("locationDetail", locationDetail);
 
   const { id } = useParams();
   return (

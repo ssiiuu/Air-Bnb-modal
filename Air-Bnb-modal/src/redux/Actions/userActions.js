@@ -12,7 +12,6 @@ export const getRoomAction = (tenPhim = "") => {
       },
     })
       .then((res) => {
-        console.log("res1", res);
         dispatch({
           type: SET_DANH_SACH_ROOM,
           payload: res.data,

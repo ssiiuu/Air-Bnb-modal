@@ -29,10 +29,7 @@ export const addRoomAction = (data, locationId) => {
       .addRoom(data)
       .then((res) => {
         message.success("Thêm thành công!");
-        dispatch({
-          type: ADD_ROOM,
-          payload: res.data,
-        });
+        dispatch(getRoomListAction(locationId));
         history.push(`/admin/rooms/${locationId}`);
       })
       .catch((err) => {

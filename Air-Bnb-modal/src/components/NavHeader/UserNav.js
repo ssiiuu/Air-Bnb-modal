@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { SET_USER_INFOR } from "../../redux/Constants/userConstant";
 import { localServe } from "../../Services/LocalServe";
+import localStorageServ from "../../serviceWorker/locaStorage.service";
 
 export default function UserNav() {
   let userInfor = useSelector((state) => state.userReducer.userInfor);
@@ -10,6 +11,7 @@ export default function UserNav() {
   let dispatch = useDispatch();
   const handleLogout = () => {
     localServe.removeUserInfor();
+    localStorageServ.token.remove();
     dispatch({
       type: SET_USER_INFOR,
       payload: null,
@@ -37,9 +39,9 @@ export default function UserNav() {
           <i className="fa-solid fa-bars w-4" />
         </div>
         <div>
-          {userInfor.avatar ? (
+          {userInfor?.avatar ? (
             <img
-              src={userInfor.avatar}
+              src={userInfor?.avatar}
               className="object-cover w-5 h-5 rounded-2xl"
             />
           ) : (

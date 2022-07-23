@@ -36,7 +36,6 @@ export const getUserListAction = (user = "") => {
     httpServ
       .getUserList(user)
       .then((res) => {
-        console.log("userList", res.data);
         dispatch({
           type: GET_USER_LIST,
           payload: res.data,
@@ -73,18 +72,8 @@ export const deleteUserAction = (id) => {
     httpServ
       .deleteUser(id)
       .then((res) => {
-        httpServ
-          .getUserList()
-          .then((res) => {
-            message.success("Xóa thành công!");
-            dispatch({
-              type: GET_USER_LIST,
-              payload: res.data,
-            });
-          })
-          .catch((err) => {
-            console.log("err", err);
-          });
+        message.success("Xóa thành công!");
+        dispatch(getUserListAction());
       })
       .catch((err) => {
         console.log("err", err);
@@ -113,7 +102,6 @@ export const getListTicketsByUserAction = (id) => {
     httpServ
       .getListTicketsByUser(id)
       .then((res) => {
-        console.log("resTickets", res.data);
         dispatch({
           type: SET_USER_DETAILS_TICKET_INFOR,
           payload: res.data,

@@ -11,7 +11,6 @@ export const getValueateListByRoomAction = (roomId) => {
     httpServ
       .getValueateListByRoom(roomId)
       .then((res) => {
-        console.log("resListvalueate", res);
         dispatch({
           type: GET_VALUEATE_LIST,
           payload: res.data,
@@ -51,12 +50,11 @@ export const deleteValueateAction = (valueateId, roomId) => {
   };
 };
 
-export const getValueateDetail = (valueateId) => {
+export const getValueateDetailAction = (valueateId) => {
   return (dispatch) => {
     httpServ
       .getValueateDetail(valueateId)
       .then((res) => {
-        console.log("resDetailValueate", res.data);
         dispatch({
           type: SET_VALUEATE_DETAIL,
           payload: res.data,

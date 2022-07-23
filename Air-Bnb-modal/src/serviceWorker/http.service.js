@@ -156,9 +156,14 @@ class HttpRequestService {
   };
 
   // Valueate Services
-  getValueateListByRoom = (roomId) => {
-    const uri = `/api/reviews/byRoom?roomId=${roomId}`;
-    return AxiosServ.getMethod(uri, roomId);
+  getValueateListByRoom = (roomId = "") => {
+    if (roomId !== "") {
+      const uri = `/api/reviews/byRoom?roomId=${roomId}`;
+      return AxiosServ.getMethod(uri, roomId);
+    } else {
+      const uri = `/api/reviews/byRoom`;
+      return AxiosServ.getMethod(uri);
+    }
   };
   addValueateByRoom = (data, roomId) => {
     const uri = `/api/reviews?roomId=${roomId}`;
@@ -175,6 +180,12 @@ class HttpRequestService {
   updateValueateDetail = (data, valueateId) => {
     const uri = `/api/reviews/${valueateId}`;
     return AxiosServ.putMethod(uri, data);
+  };
+
+  //Tickets services
+  getListTickets = () => {
+    const uri = `/api/tickets`;
+    return AxiosServ.getMethod(uri);
   };
 }
 
